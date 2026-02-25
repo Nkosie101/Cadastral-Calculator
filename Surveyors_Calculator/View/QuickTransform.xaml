@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    
+    xmlns:local="clr-namespace:Surveyors_Calculator"
+    
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    
+    xmlns:viewmodel="clr-namespace:Surveyors_Calculator.ViewModel"
+    
+    xmlns:model="clr-namespace:Surveyors_Calculator.Model"
+    x:DataType="viewmodel:QuickTransformViewModel"
+    x:Class="Surveyors_Calculator.View.QuickTransform">
+    <VerticalStackLayout
+        Padding="20,0"
+        Spacing="10">
+        <Label
+            x:Name="lbl"
+            HorizontalOptions="CenterAndExpand"
+            Text="System 1" />
+        <StackLayout>
+            <Grid
+                ColumnDefinitions="*,*,*"
+                RowDefinitions="50,50,50,50">
+                <Label
+                    Text="First"
+                    Padding="10"
+                    Grid.Column="0" />
+                <Entry
+                    Text="{Binding E1Entry}"
+                    Placeholder="E 1"
+                    Grid.Column="1"></Entry>
+                <Entry
+                    Text="{Binding N1Entry}"
+                    Placeholder="N 1"
+                    Grid.Column="2"></Entry>
+                <Label
+                    Text="Second"
+                    Padding="10"
+                    Grid.Column="0"
+                    Grid.Row="1" />
+                <Entry
+                    Text="{Binding E2Entry}"
+                    Placeholder="E 2"
+                    Grid.Column="1"
+                    Grid.Row="1"></Entry>
+                <Entry
+                    Text="{Binding N2Entry}"
+                    Placeholder="N 2"
+                    Grid.Column="2"
+                    Grid.Row="1"></Entry>
+                <Label
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    Text="Third"
+                    Padding="10" />
+                <Border
+                    Grid.Column="1"
+                    Grid.Row="2">
+                    <Label
+                        Text="{Binding Easting}" />
+                </Border>
+                <Border
+                    Grid.Column="2"
+                    Grid.Row="2">
+                    <Label
+                        Text="{Binding Northing}" />
+                </Border>
+            </Grid>
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                Text="System 2" />
+            <Grid
+                ColumnDefinitions="*,*,*"
+                RowDefinitions="50,50,50,50">
+                <Label
+                    Text="First"
+                    Padding="10"
+                    Grid.Column="0" />
+                <Entry
+                    Text="{Binding E3Entry}"
+                    Placeholder="E 3"
+                    Grid.Column="1"></Entry>
+                <Entry
+                    Text="{Binding N3Entry}"
+                    Placeholder="N 3"
+                    Grid.Column="2"></Entry>
+                <Label
+                    Text="Second"
+                    Padding="10"
+                    Grid.Column="0"
+                    Grid.Row="1" />
+                <Entry
+                    Text="{Binding E4Entry}"
+                    Placeholder="E 4"
+                    Grid.Column="1"
+                    Grid.Row="1"></Entry>
+                <Entry
+                    Text="{Binding N4Entry}"
+                    Placeholder="N 4"
+                    Grid.Column="2"
+                    Grid.Row="1"></Entry>
+                <Label
+                    Text="Third"
+                    Padding="10"
+                    Grid.Column="0"
+                    Grid.Row="2" />
+                <Entry
+                    Text="{Binding E5Entry}"
+                    Placeholder="E 5"
+                    Grid.Column="1"
+                    Grid.Row="2"></Entry>
+                <Entry
+                    Text="{Binding N5Entry}"
+                    Placeholder="N 5"
+                    Grid.Column="2"
+                    Grid.Row="2"></Entry>
+                <Button
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Text="Calculate"
+                    Command="{Binding GetTransformedCoordinatesCommand}" />
+                <Label
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    Text="{Binding Length}" />
+            </Grid>
+        </StackLayout>
+    </VerticalStackLayout>
+</ContentPage>
