@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    
+    xmlns:local="clr-namespace:Surveyors_Calculator"
+    
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    
+    xmlns:viewmodel="clr-namespace:Surveyors_Calculator.ViewModel"
+    x:DataType="viewmodel:MainPageViewModel"
+    
+    xmlns:model="clr-namespace:Surveyors_Calculator.Model"
+    Title="{Binding Title}"
+    x:Class="Surveyors_Calculator.View.MainPage">
+    <!--<ContentPage.BindingContext>
+        <viewmodel:MainPageViewModel/>
+    </ContentPage.BindingContext>-->
+    <!--<Grid
+        ColumnDefinitions="*,*"
+        RowDefinitions="1*,3*,1*">
+        <StackLayout
+            Grid.Row="1"
+            Grid.Column="0">
+            <ImageButton
+                Margin="15,10,10,0"
+                HeightRequest="125"
+                WidthRequest="125"
+                HorizontalOptions="CenterAndExpand"
+                Source="add_color.png"
+                Command="{Binding GoToInputCommand}" />
+            <ImageButton
+                Margin="25,10,10,10"
+                HeightRequest="125"
+                WidthRequest="125"
+                HorizontalOptions="CenterAndExpand"
+                Source="import_color.png"
+                Command="{Binding GoToImportCommand}" />
+            <ImageButton
+                Margin="0,10,10,10"
+                HeightRequest="125"
+                WidthRequest="125"
+                HorizontalOptions="CenterAndExpand"
+                Source="file_import.png"
+                Command="{Binding FileListCommand}" />
+        </StackLayout>
+        <StackLayout
+            Grid.Row="1"
+            Grid.Column="1">
+            <Label
+                Text="New File"
+                FontSize="Large"
+                Margin="0,10,10,10"
+                Padding="0,50,0,0"
+                HeightRequest="125"
+                WidthRequest="125" />
+            <Label
+                VerticalOptions="Center"
+                Text="Import"
+                FontSize="Large"
+                Margin="0,10,10,10"
+                Padding="0,50,0,0"
+                HeightRequest="125"
+                WidthRequest="125" />
+            <Label
+                VerticalOptions="Center"
+                Text="Internal File"
+                FontSize="Large"
+                Margin="0,10,10,10"
+                Padding="0,50,0,0"
+                HeightRequest="125"
+                WidthRequest="125" />
+        </StackLayout>-->
+    <!--<Border
+            BackgroundColor="transparent"
+            Grid.ColumnSpan="3"
+            Grid.Row="1"></Border>
+            
+        <Border
+            BackgroundColor="transparent"
+            Grid.Row="2"></Border>
+        <Border
+            BackgroundColor="transparent"
+            Grid.Row="0"></Border>
+        
+    </Grid>-->
+    <Grid
+        RowDefinitions="*,3*,*">
+        <StackLayout
+            Grid.Row="1">
+            <Border
+                HeightRequest="125"
+                StrokeThickness="0"
+                Margin="15,10,10,0">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainPageViewModel}}, Path=GoToInputCommand}"
+                        CommandParameter="{Binding .}" />
+                </Border.GestureRecognizers>
+                <Grid
+                    ColumnDefinitions="*,*">
+                    <Image
+                        Grid.Column="0"
+                        HeightRequest="125"
+                        WidthRequest="125"
+                        HorizontalOptions="CenterAndExpand"
+                        Source="add_color.png" />
+                    <Label
+                        Grid.Column="1"
+                        Text="New File"
+                        FontSize="Large"
+                        Margin="0,10,10,10"
+                        Padding="0,50,0,0"
+                        HeightRequest="125"
+                        WidthRequest="125" />
+                </Grid>
+            </Border>
+            <Border
+                HeightRequest="125"
+                StrokeThickness="0"
+                Margin="25,10,10,0">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainPageViewModel}}, Path=GoToImportCommand}"
+                        CommandParameter="{Binding .}" />
+                </Border.GestureRecognizers>
+                <Grid
+                    ColumnDefinitions="*,*">
+                    <Image
+                        Grid.Column="0"
+                        Margin="25,10,10,10"
+                        HeightRequest="125"
+                        WidthRequest="125"
+                        HorizontalOptions="CenterAndExpand"
+                        Source="import_color.png" />
+                    <Label
+                        Grid.Column="1"
+                        VerticalOptions="Center"
+                        Text="Import"
+                        FontSize="Large"
+                        Margin="0,10,10,10"
+                        Padding="0,50,0,0"
+                        HeightRequest="125"
+                        WidthRequest="125" />
+                </Grid>
+            </Border>
+            <Border
+                HeightRequest="125"
+                StrokeThickness="0"
+                Margin="0,10,10,0">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainPageViewModel}}, Path=FileListCommand}"
+                        CommandParameter="{Binding .}" />
+                </Border.GestureRecognizers>
+                <Grid
+                    ColumnDefinitions="*,*">
+                    <Image
+                        Grid.Column="0"
+                        Margin="0,10,10,10"
+                        HeightRequest="125"
+                        WidthRequest="125"
+                        HorizontalOptions="CenterAndExpand"
+                        Source="file_import.png" />
+                    <Label
+                        Grid.Column="1"
+                        VerticalOptions="Center"
+                        Text="Internal File"
+                        FontSize="Large"
+                        Margin="0,10,10,10"
+                        Padding="0,50,0,0"
+                        HeightRequest="125"
+                        WidthRequest="125" />
+                </Grid>
+            </Border>
+        </StackLayout>
+    </Grid>
+    <!--<Button
+        Command="{Binding GoToCalculationsMenuCommand}"
+        Grid.Column="1"
+       Grid.Row="2" />-->
+</ContentPage>

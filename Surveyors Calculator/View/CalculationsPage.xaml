@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    
+    xmlns:local="clr-namespace:Surveyors_Calculator"
+    
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    
+    xmlns:viewmodel="clr-namespace:Surveyors_Calculator.ViewModel"
+    
+    xmlns:model="clr-namespace:Surveyors_Calculator.Model"
+    x:DataType="viewmodel:CalculationsPageViewModel"
+    x:Class="Surveyors_Calculator.View.CalculationsPage">
+    <Grid
+        ColumnDefinitions="9*, *"
+        ColumnSpacing="5"
+        RowDefinitions="4*, 7*, 7*, 2*"
+        RowSpacing="0"
+        Margin="0,0,5,0">
+        <Label
+            Text="{Binding file1name}" />
+        <HorizontalStackLayout>
+            <Picker
+                VerticalOptions="Start"
+                HorizontalOptions="Start"
+                Title="Select File 1"
+                ItemsSource="{Binding fileNames}"
+                SelectedItem="{Binding SelectedFile1}"></Picker>
+            <Picker
+                VerticalOptions="Start"
+                HorizontalOptions="Start"
+                Title="Select File 2"
+                ItemsSource="{Binding fileNames}"
+                SelectedItem="{Binding SelectedFile2}"></Picker>
+            <ImageButton
+                BackgroundColor="transparent"
+                HeightRequest="30"
+                WidthRequest="30"
+                HorizontalOptions="End"
+                VerticalOptions="Start"
+                Source="csv.png"
+                Command="{Binding ExportFileCommand}" />
+            <ImageButton
+                BackgroundColor="transparent"
+                HeightRequest="30"
+                WidthRequest="30"
+                HorizontalOptions="End"
+                VerticalOptions="Start"
+                Source="parameters.png"
+                Command="{Binding GoToParametersCommand}" />
+        </HorizontalStackLayout>
+        <RefreshView
+            Command="{Binding RefreshCommand}"
+            IsRefreshing="{Binding IsRefreshing}"
+            Grid.Row="1"
+            Grid.ColumnSpan="2">
+            <Border>
+                <Label
+                    VerticalOptions="Start"
+                    HorizontalOptions="Start"
+                    Text="{Binding File1name}" />
+                <CollectionView
+                    ItemsSource="{Binding From}"
+                    SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate
+                            x:DataType="model:Coordinate">
+                            <Border
+                                HeightRequest="25">
+                                <!--Add the Gesture Recognizer-->
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CalculationsPageViewModel}}, Path=TogglePointCommand}"
+                                        CommandParameter="{Binding .}" />
+                                </Border.GestureRecognizers>
+                                <Grid
+                                    ColumnDefinitions="*,*,*,*,Auto">
+                                    <Label
+                                        Text="{Binding name}"
+                                        Padding="0,0,3,0" />
+                                    <Label
+                                        Grid.Column="1"
+                                        Text="{Binding y}"
+                                        Padding="0,0,3,0" />
+                                    <Label
+                                        Grid.Column="2"
+                                        Text="{Binding x}"
+                                        Padding="0,0,3,0" />
+                                    <Label
+                                        Grid.Column="3"
+                                        Text="{Binding z}" />
+                                    <CheckBox
+                                        IsChecked="{Binding IsChecked}"
+                                        InputTransparent="True"
+                                        Grid.Column="4" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Border>
+        </RefreshView>
+        <Border
+            Grid.Row="2"
+            Grid.ColumnSpan="2">
+            <Label
+                VerticalOptions="Start"
+                HorizontalOptions="Start"
+                Text="To" />
+            <CollectionView
+                ItemsSource="{Binding To}"
+                SelectionMode="None">
+                <CollectionView.EmptyView>
+                    <Picker
+                        Title="File 2"
+                        ItemsSource="{Binding fileNames}"
+                        SelectedItem="{Binding SelectedFile2}"></Picker>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate
+                        x:DataType="model:Coordinate">
+                        <Border
+                            HeightRequest="25">
+                            <!--Add the Gesture Recognizer-->
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CalculationsPageViewModel}}, Path=ToggleSelectionCommand}"
+                                    CommandParameter="{Binding .}" />
+                            </Border.GestureRecognizers>
+                            <Grid
+                                ColumnDefinitions="*,*,*,*,Auto">
+                                <Label
+                                    Text="{Binding name}"
+                                    Padding="0,0,3,0" />
+                                <Label
+                                    Grid.Column="1"
+                                    Text="{Binding y}"
+                                    Padding="0,0,3,0" />
+                                <Label
+                                    Grid.Column="2"
+                                    Text="{Binding x}"
+                                    Padding="0,0,3,0" />
+                                <Label
+                                    Grid.Column="3"
+                                    Text="{Binding z}" />
+                                <CheckBox
+                                    IsChecked="{Binding IsChecked}"
+                                    InputTransparent="True"
+                                    Grid.Column="4" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Border>
+        <Frame
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            Margin="0,0,350,0"
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            HeightRequest="30"
+            WidthRequest="30"
+            CornerRadius="15"
+            IsClippedToBounds="True">
+            <ImageButton
+                BackgroundColor="transparent"
+                HeightRequest="30"
+                WidthRequest="30"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Source="swap_color.png"
+                Command="{Binding SwapCommand}" />
+        </Frame>
+        <!--Aspect="AspectFill"-->
+        <Border
+            Grid.Row="3"
+            Grid.ColumnSpan="2">
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer
+                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CalculationsPageViewModel}}, Path=AutobotsTransformCommand}"
+                    CommandParameter="{Binding .}" />
+            </Border.GestureRecognizers>
+            <Grid
+                ColumnDefinitions="4*,1*">
+                <Label
+                    FontSize="Large"
+                    Text="Calculate"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand" />
+                <Image
+                    Grid.Column="1"
+                    Source="right_arrow.png" />
+            </Grid>
+        </Border>
+        <ActivityIndicator
+            IsVisible="{Binding IsBusy}"
+            IsRunning="{Binding IsBusy}"
+            HorizontalOptions="Fill"
+            VerticalOptions="Center"
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="2" />
+    </Grid>
+</ContentPage>
