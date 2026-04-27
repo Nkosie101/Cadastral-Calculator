@@ -38,11 +38,20 @@
 
 name: Build .NET App
 
+#on:
+#  push:
+#    branches: [ "main" ]
+#  pull_request:
+#    branches: [ "main" ]
+
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  # This allows you to trigger the build manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      build_type:
+        description: 'Build Type (Release/Debug)'
+        required: true
+        default: 'Release'
 
 jobs:
   build:
