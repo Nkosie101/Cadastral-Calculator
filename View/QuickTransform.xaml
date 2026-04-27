@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    
+    xmlns:local="clr-namespace:Surveyors_Calculator"
+    
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    
+    xmlns:viewmodel="clr-namespace:Surveyors_Calculator.ViewModel"
+    
+    xmlns:model="clr-namespace:Surveyors_Calculator.Model"
+    x:DataType="viewmodel:QuickTransformViewModel"
+    x:Class="Surveyors_Calculator.View.QuickTransform">
+    <VerticalStackLayout
+        Padding="20,0"
+        Spacing="10">
+        <HorizontalStackLayout>
+            <Button
+                Text="Clear"
+                Command="{Binding ClearCommand}"
+                Margin="0,0,100,0" />
+            <Label
+                Text="3D"
+                VerticalOptions="Center" />
+            <Switch
+                HorizontalOptions="End"
+                IsToggled="{Binding Is3D}" />
+        </HorizontalStackLayout>
+        <StackLayout
+            IsVisible="{Binding Is2D}">
+            <Label
+                x:Name="lbl"
+                HorizontalOptions="CenterAndExpand"
+                Text="System 1" />
+            <StackLayout>
+                <Grid
+                    ColumnDefinitions="*,*,*"
+                    RowDefinitions="50,50,50,50">
+                    <Label
+                        Text="First"
+                        Padding="10"
+                        Grid.Column="0" />
+                    <Entry
+                        Text="{Binding E1Entry}"
+                        Placeholder="E 1"
+                        Grid.Column="1"></Entry>
+                    <Entry
+                        Text="{Binding N1Entry}"
+                        Placeholder="N 1"
+                        Grid.Column="2"></Entry>
+                    <Label
+                        Text="Second"
+                        Padding="10"
+                        Grid.Column="0"
+                        Grid.Row="1" />
+                    <Entry
+                        Text="{Binding E2Entry}"
+                        Placeholder="E 2"
+                        Grid.Column="1"
+                        Grid.Row="1"></Entry>
+                    <Entry
+                        Text="{Binding N2Entry}"
+                        Placeholder="N 2"
+                        Grid.Column="2"
+                        Grid.Row="1"></Entry>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="2"
+                        Text="Third"
+                        Padding="10" />
+                    <Border
+                        Grid.Column="1"
+                        Grid.Row="2">
+                        <Label
+                            Text="{Binding Easting}" />
+                    </Border>
+                    <Border
+                        Grid.Column="2"
+                        Grid.Row="2">
+                        <Label
+                            Text="{Binding Northing}" />
+                    </Border>
+                </Grid>
+                <Label
+                    HorizontalOptions="CenterAndExpand"
+                    Text="System 2" />
+                <Grid
+                    ColumnDefinitions="*,*,*"
+                    RowDefinitions="50,50,50,50">
+                    <Label
+                        Text="First"
+                        Padding="10"
+                        Grid.Column="0" />
+                    <Entry
+                        Text="{Binding E3Entry}"
+                        Placeholder="E 3"
+                        Grid.Column="1"></Entry>
+                    <Entry
+                        Text="{Binding N3Entry}"
+                        Placeholder="N 3"
+                        Grid.Column="2"></Entry>
+                    <Label
+                        Text="Second"
+                        Padding="10"
+                        Grid.Column="0"
+                        Grid.Row="1" />
+                    <Entry
+                        Text="{Binding E4Entry}"
+                        Placeholder="E 4"
+                        Grid.Column="1"
+                        Grid.Row="1"></Entry>
+                    <Entry
+                        Text="{Binding N4Entry}"
+                        Placeholder="N 4"
+                        Grid.Column="2"
+                        Grid.Row="1"></Entry>
+                    <Label
+                        Text="Third"
+                        Padding="10"
+                        Grid.Column="0"
+                        Grid.Row="2" />
+                    <Entry
+                        Text="{Binding E5Entry}"
+                        Placeholder="E 5"
+                        Grid.Column="1"
+                        Grid.Row="2"></Entry>
+                    <Entry
+                        Text="{Binding N5Entry}"
+                        Placeholder="N 5"
+                        Grid.Column="2"
+                        Grid.Row="2"></Entry>
+                    <Button
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Text="Calculate"
+                        Command="{Binding GetTransformedCoordinatesCommand}" />
+                    <Label
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="CenterAndExpand"
+                        Grid.Row="5"
+                        Grid.Column="1"
+                        Text="{Binding Length}" />
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout
+            IsVisible="{Binding Is3D}">
+            <Label
+                x:Name="lbl3d"
+                HorizontalOptions="CenterAndExpand"
+                Text="System 1" />
+            <StackLayout>
+                <Grid
+                    ColumnDefinitions="*,*,*,*"
+                    RowDefinitions="50,50,50,50,50">
+                    <Label
+                        Text="First"
+                        Padding="10"
+                        Grid.Column="0" />
+                    <Entry
+                        Text="{Binding E1Entry3D}"
+                        Placeholder="E 1"
+                        Grid.Column="1"></Entry>
+                    <Entry
+                        Text="{Binding N1Entry3D}"
+                        Placeholder="N 1"
+                        Grid.Column="2"></Entry>
+                    <Entry
+                        Text="{Binding Z1Entry3D}"
+                        Placeholder="Z 1"
+                        Grid.Column="3"></Entry>
+                    <Label
+                        Text="Second"
+                        Padding="10"
+                        Grid.Column="0"
+                        Grid.Row="1" />
+                    <Entry
+                        Text="{Binding E2Entry3D}"
+                        Placeholder="E 2"
+                        Grid.Column="1"
+                        Grid.Row="1"></Entry>
+                    <Entry
+                        Text="{Binding N2Entry3D}"
+                        Placeholder="N 2"
+                        Grid.Column="2"
+                        Grid.Row="1"></Entry>
+                    <Entry
+                        Text="{Binding Z2Entry3D}"
+                        Placeholder="Z 2"
+                        Grid.Column="3"
+                        Grid.Row="1"></Entry>
+                    <Label
+                        Text="Third"
+                        Padding="10"
+                        Grid.Column="0"
+                        Grid.Row="2" />
+                    <Entry
+                        Text="{Binding E3Entry3D}"
+                        Placeholder="E 3"
+                        Grid.Column="1"
+                        Grid.Row="2"></Entry>
+                    <Entry
+                        Text="{Binding N3Entry3D}"
+                        Placeholder="N 3"
+                        Grid.Column="2"
+                        Grid.Row="2"></Entry>
+                    <Entry
+                        Text="{Binding Z3Entry3D}"
+                        Placeholder="Z 3"
+                        Grid.Column="3"
+                        Grid.Row="2"></Entry>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="3"
+                        Text="Fourth"
+                        Padding="10" />
+                    <Border
+                        Grid.Column="1"
+                        Grid.Row="3">
+                        <Label
+                            Text="{Binding Easting3D}" />
+                    </Border>
+                    <Border
+                        Grid.Column="2"
+                        Grid.Row="3">
+                        <Label
+                            Text="{Binding Northing3D}" />
+                    </Border>
+                    <Border
+                        Grid.Column="3"
+                        Grid.Row="3">
+                        <Label
+                            Text="{Binding Elevation3D}" />
+                    </Border>
+                </Grid>
+                <Label
+                    HorizontalOptions="CenterAndExpand"
+                    Text="System 2" />
+                <Grid
+                    ColumnDefinitions="*,*,*,*"
+                    RowDefinitions="50,50,50,50,50,50">
+                    <Label
+                        Text="First"
+                        Padding="10"
+                        Grid.Column="0"
+                        Grid.Row="1" />
+                    <Entry
+                        Text="{Binding E4Entry3D}"
+                        Placeholder="E 4"
+                        Grid.Column="1"
+                        Grid.Row="1"></Entry>
+                    <Entry
+                        Text="{Binding N4Entry3D}"
+                        Placeholder="N 4"
+                        Grid.Column="2"
+                        Grid.Row="1"></Entry>
+                    <Entry
+                        Text="{Binding Z4Entry3D}"
+                        Placeholder="Z 4"
+                        Grid.Column="3"
+                        Grid.Row="1"></Entry>
+                    <Label
+                        Text="Second"
+                        Padding="10"
+                        Grid.Column="0"
+                        Grid.Row="2" />
+                    <Entry
+                        Text="{Binding E5Entry3D}"
+                        Placeholder="E 5"
+                        Grid.Column="1"
+                        Grid.Row="2"></Entry>
+                    <Entry
+                        Text="{Binding N5Entry3D}"
+                        Placeholder="N 5"
+                        Grid.Column="2"
+                        Grid.Row="2"></Entry>
+                    <Entry
+                        Text="{Binding Z5Entry3D}"
+                        Placeholder="Z 5"
+                        Grid.Column="3"
+                        Grid.Row="2"></Entry>
+                    <Label
+                        Text="Third"
+                        Padding="10"
+                        Grid.Column="0"
+                        Grid.Row="3" />
+                    <Entry
+                        Text="{Binding E6Entry3D}"
+                        Placeholder="E 6"
+                        Grid.Column="1"
+                        Grid.Row="3"></Entry>
+                    <Entry
+                        Text="{Binding N6Entry3D}"
+                        Placeholder="N 6"
+                        Grid.Column="2"
+                        Grid.Row="3"></Entry>
+                    <Entry
+                        Text="{Binding Z6Entry3D}"
+                        Placeholder="Z 6"
+                        Grid.Column="3"
+                        Grid.Row="3"></Entry>
+                    <Label
+                        Text="Fourth"
+                        Padding="10"
+                        Grid.Column="0"
+                        Grid.Row="4" />
+                    <Entry
+                        Text="{Binding E7Entry3D}"
+                        Placeholder="E 7"
+                        Grid.Column="1"
+                        Grid.Row="4"></Entry>
+                    <Entry
+                        Text="{Binding N7Entry3D}"
+                        Placeholder="N 7"
+                        Grid.Column="2"
+                        Grid.Row="4"></Entry>
+                    <Entry
+                        Text="{Binding Z7Entry3D}"
+                        Placeholder="Z 7"
+                        Grid.Column="3"
+                        Grid.Row="4"></Entry>
+                    <Button
+                        Grid.Row="5"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Text="Calculate"
+                        Command="{Binding Get3DTransformedCoordinatesCommand}" />
+                    <Label
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="CenterAndExpand"
+                        Grid.Row="5"
+                        Grid.Column="1"
+                        Text="{Binding Length}" />
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </VerticalStackLayout>
+</ContentPage>
