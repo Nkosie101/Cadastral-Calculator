@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<toolkit:Popup
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    
+    xmlns:local="clr-namespace:Surveyors_Calculator"
+    
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    
+    xmlns:viewmodel="clr-namespace:Surveyors_Calculator.ViewModel"
+    
+    xmlns:model="clr-namespace:Surveyors_Calculator.Model"
+    x:Class="Surveyors_Calculator.Popups.MyCSVMapPopup"
+    Style="{StaticResource MyCustomPopupStyle}">
+    <VerticalStackLayout
+        Padding="20"
+        Spacing="30"
+        MinimumWidthRequest="250"
+        Style="{StaticResource PopupContainerStyle}">
+        <Label
+            Margin="5"
+            MaximumWidthRequest="200"
+            FontAttributes="Italic"
+            Text="Enter the column number in your file that matches the required fields" />
+        <Grid
+            RowDefinitions="*,*,*,*"
+            ColumnDefinitions="*,*">
+            <Label
+                Grid.Row="0"
+                Text="Name" />
+            <Entry
+                Grid.Row="0"
+                Grid.Column="1"
+                Text="{Binding NameColumn}"
+                Placeholder="1" />
+            <Label
+                Grid.Row="1"
+                Text="Y" />
+            <Entry
+                Grid.Row="1"
+                Grid.Column="1"
+                Text="{Binding YColumn}"
+                Placeholder="2" />
+            <Label
+                Grid.Row="2"
+                Text="X" />
+            <Entry
+                Grid.Row="2"
+                Grid.Column="1"
+                Text="{Binding XColumn}"
+                Placeholder="3" />
+            <Label
+                Grid.Row="3"
+                Text="Z" />
+            <Entry
+                Grid.Row="3"
+                Grid.Column="1"
+                Text="{Binding ZColumn}"
+                Placeholder="4" />
+        </Grid>
+        <Label
+            Text="{Binding MissingData}" />
+        <Button
+            Text="OK"
+            MinimumWidthRequest="50"
+            Command="{Binding OkButtonCommand}" />
+    </VerticalStackLayout>
+</toolkit:Popup>
