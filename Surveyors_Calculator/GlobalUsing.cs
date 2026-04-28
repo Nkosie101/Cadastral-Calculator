@@ -10,7 +10,7 @@ global using System.Text.Json;
 global using SQLite;
 global using SQLitePCL;
 global using System.Threading.Tasks;
-global using CSharpShellCore;
+//global using CSharpShellCore;
 global using Microsoft.Maui.ApplicationModel;
 global using CommunityToolkit.Maui.Views;
 global using Surveyors_Calculator.Popups;
