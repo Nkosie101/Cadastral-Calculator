@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    
+    xmlns:local="clr-namespace:Surveyors_Calculator"
+    
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    
+    xmlns:viewmodel="clr-namespace:Surveyors_Calculator.ViewModel"
+    
+    xmlns:model="clr-namespace:Surveyors_Calculator.Model"
+    x:DataType="viewmodel:InputViewModel"
+    x:Class="Surveyors_Calculator.View.Input">
+    <RefreshView
+        Command="{Binding RefreshCommand}"
+        IsRefreshing="{Binding IsRefreshing}">
+        <Grid
+            ColumnDefinitions="9*, *"
+            ColumnSpacing="5"
+            RowDefinitions="4*, 12*, 2*, 2*"
+            RowSpacing="0"
+            Margin="0,0,5,0">
+            <Grid
+                Grid.ColumnSpan="2"
+                ColumnDefinitions="Auto, Auto, Auto, Auto, *">
+                <ImageButton
+                    Grid.Column="0"
+                    HeightRequest="25"
+                    WidthRequest="25"
+                    Source="save_color.png"
+                    Command="{Binding SaveCommand}" />
+                <Label
+                    Grid.Column="1"
+                    Text="{Binding TopLabel}"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="Start" />
+                <ImageButton
+                    Grid.Column="2"
+                    HorizontalOptions="Start"
+                    VerticalOptions="CenterAndExpand"
+                    Source="delete_color.png"
+                    Command="{Binding DeleteCommand}" />
+                <Label
+                    Grid.Column="3"
+                    VerticalOptions="Center"
+                    Text="Editing"
+                    BackgroundColor="{Binding Editing}" />
+                <ImageButton
+                    Grid.Column="4"
+                    HorizontalOptions="End"
+                    VerticalOptions="CenterAndExpand"
+                    Source="next.png"
+                    Command="{Binding DoneCommand}" />
+            </Grid>
+            <CollectionView
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                ItemsSource="{Binding Coordinates}"
+                SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate
+                        x:DataType="model:Coordinate">
+                        <Grid
+                            Padding="1">
+                            <Border
+                                HeightRequest="25">
+                                <!--Add the Gesture Recognizer-->
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:InputViewModel}}, Path=DisplayCoordinateCommand}"
+                                        CommandParameter="{Binding .}" />
+                                </Border.GestureRecognizers>
+                                <Grid
+                                    ColumnDefinitions="*,*,*,*,Auto">
+                                    <Label
+                                        Text="{Binding name}" />
+                                    <Label
+                                        Grid.Column="1"
+                                        Text="{Binding y}"
+                                        Padding="0,0,3,0" />
+                                    <Label
+                                        Grid.Column="2"
+                                        Text="{Binding x}"
+                                        Padding="0,0,3,0" />
+                                    <Label
+                                        Grid.Column="3"
+                                        Text="{Binding z}"
+                                        Padding="0,0,3,0" />
+                                    <CheckBox
+                                        Grid.Column="4"
+                                        IsChecked="{Binding IsChecked}" />
+                                </Grid>
+                                <!--Padding="0"
+                                ColumnDefinitions="125,*">Grid.Column="1"
+                                    VerticalOptions="Center"
+                                    Padding="10"&gt;<Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" /> -->
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Grid
+                Grid.Row="2"
+                ColumnDefinitions="Auto, *, *, *">
+                <Label
+                    Grid.Column="0"
+                    Text="Name: "
+                    VerticalOptions="Center" />
+                <Entry
+                    Grid.Column="1"
+                    Text="{Binding Name}" />
+                <!-- <Picker
+                    Title="System"
+                    x:Name="coordSystemPicker"
+                    Grid.Column="2"
+                    ItemsSource="{Binding CoordinateSystems}"
+                    SelectedItem="{Binding SelectedCoordSys}"></Picker>
+                <Picker
+                    Title="Units"
+                    x:Name="unitsPicker"
+                    Grid.Column="3"
+                    ItemsSource="{Binding Units}"
+                    SelectedItem="{Binding SelectedUnits}"></Picker>-->
+            </Grid>
+            <Grid
+                Grid.Row="3"
+                Grid.Column="0"
+                ColumnDefinitions="Auto, *, Auto, *, Auto, *">
+                <Entry
+                    Text="{Binding Y}"
+                    Grid.Column="1" />
+                <Entry
+                    Text="{Binding X}"
+                    Grid.Column="3" />
+                <Entry
+                    Text="{Binding Z}"
+                    Grid.Column="5" />
+                <Label
+                    Grid.Column="0"
+                    VerticalOptions="Center"
+                    Text="Y: " />
+                <Label
+                    Grid.Column="2"
+                    VerticalOptions="Center"
+                    Text="X: " />
+                <Label
+                    Grid.Column="4"
+                    VerticalOptions="Center"
+                    Text="Z: " />
+            </Grid>
+            <!---<SwipeView
+                Grid.Row="2"
+                Grid.RowSpan="2"
+                Grid.Column="1"
+                HeightRequest="60" 
+    VerticalOptions="Center">
+                <SwipeView.BottomItems>
+                    <SwipeItem
+                        BackgroundColor="transparent"
+                        IconImageSource="next.png"
+                        Command="{Binding DoneCommand}" />
+                </SwipeView.BottomItems>
+                <ImageButton
+                    CornerRadius="10"
+                    VerticalOptions="End"
+                    Source="add_color.png"
+                    Command="{Binding AddCoordinatesCommand}" />
+                    
+                
+
+                    
+            </SwipeView>-->
+            <ActivityIndicator
+                IsVisible="{Binding IsBusy}"
+                IsRunning="{Binding IsBusy}"
+                HorizontalOptions="Fill"
+                VerticalOptions="Center"
+                Grid.RowSpan="2"
+                Grid.ColumnSpan="2" />
+            <!--<ImageButton
+                Grid.Column="1"
+                Grid.Row="4"
+                CornerRadius="10"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="End"
+                Source="add_color.png"
+                Command="{Binding AddCoordinatesCommand}"
+                IsEnabled="{Binding IsNotBusy}" />-->
+            <ImageButton
+                Margin="2"
+                Grid.Row="4"
+                Grid.Column="1"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Source="add_color.png"
+                Command="{Binding AddCoordinatesCommand}" />
+        </Grid>
+    </RefreshView>
+</ContentPage>
